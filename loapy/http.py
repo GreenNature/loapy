@@ -250,6 +250,7 @@ class LostArkRest:
         gems: bool = True,
         colosseums: bool = True,
         collectibles: bool = True,
+        arkpassive: bool = True,
     ) -> Character:
         """Returns a summary of profile information by a character name."""
 
@@ -266,6 +267,7 @@ class LostArkRest:
                     "gems" if gems else None,
                     "colosseums" if colosseums else None,
                     "collectibles" if collectibles else None,
+                    "arkpassive" if arkpassive else None
                 ],
             )
         )
