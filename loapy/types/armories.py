@@ -57,6 +57,10 @@ class ArmoryEquipment(TypedDict):
     Grade: str
     Tooltip: str
 
+class ArmoryEquipmentDetails(TypedDict):
+    TranscendenceGrade: int
+    TranscendencePoint: int
+    ElixirPoitn: int
 
 class ArmoryAvatar(TypedDict):
     Type: str

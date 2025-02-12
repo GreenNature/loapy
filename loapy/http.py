@@ -275,7 +275,7 @@ class LostArkRest:
         return await self.request(
             "GET",
             f"/armories/characters/{character_name}",
-            params={"filter": "+".join(filters)},
+            params={"filters": "+".join(filters)},
         )
 
     async def fetch_profile(self, character_name: str) -> ArmoryProfile:

@@ -1,6 +1,7 @@
 from asyncio import run, gather, sleep, create_task
 import aiohttp
 from loapy import LostArkRest
+from loapy.types import armories, characters
 import time
 import threading
 
@@ -142,11 +143,20 @@ run(main())
 async def main():
 	characters = ["데런자연", "자연화가", "자연격파"]
 
-	tasks = [create_task(lostark.fetch_profile(char)) for char in characters]
+	tasks = [create_task(lostark.fetch_character(char, engravings=False ,combat_skills=False, colosseums=False, collectibles=False, avatars=False)) for char in characters]
 	results = await gather(*tasks)
+	armor_datas = []
 
 	for i, result in enumerate(results):
-		print(characters[i])
-		print(result)
+		# print(characters[i])
+		# print(result)
+		d: armories.ArmoryProfile = result["ArmoryProfile"]
+		e: armories.ArmoryEquipment = result["ArmoryEquipment"]
+		
+		armor_datas.append((d, e))
+
+	print(len(armor_datas[0][1]))
+	for i in armor_datas[0][1]:
+		print(f'이름 : {i["Name"]}, 타입 : {i["Type"]}')
 
 run(main())
