@@ -142,7 +142,25 @@ run(main())
 
 async def main():
 	characters = ["데런자연", "자연화가", "자연격파"]
-
+	"""gather에서 쓰는 *arg 에 대한 테스트
+	>>> a = [1, 2, 3]
+	>>> *a
+	File "<stdin>", line 1
+	SyntaxError: can't use starred expression here
+	>>> a
+	[1, 2, 3]
+	>>> *a
+	File "<stdin>", line 1
+	SyntaxError: can't use starred expression here
+	>>> def f(*a):
+	...     print(a)
+	...
+	>>> f(a)
+	([1, 2, 3],)
+	>>> f(*a)
+	(1, 2, 3)
+	>>> quit()
+	"""
 	tasks = [create_task(lostark.fetch_character(char, engravings=False ,combat_skills=False, colosseums=False, collectibles=False, avatars=False)) for char in characters]
 	results = await gather(*tasks)
 	armor_datas = []
